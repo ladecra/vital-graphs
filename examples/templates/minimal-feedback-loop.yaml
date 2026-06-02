@@ -1,0 +1,20 @@
+# Template: two-node negative feedback loop
+schema_version: "1"
+
+system:
+  name: Minimal feedback loop
+  description: Copy and rename nodes for a simple inhibitory loop
+
+nodes:
+  - id: signal_a
+    label: Signal A
+  - id: signal_b
+    label: Signal B
+
+edges:
+  - from: signal_a
+    to: signal_b
+    relation: stimulates
+  - from: signal_b
+    to: signal_a
+    relation: inhibits
