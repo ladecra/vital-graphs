@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vital-graphs"
+version = "1.0.0"
+description = "Convert biological system YAML into publication-quality diagrams"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "graphviz>=0.20",
+    "networkx>=3.2",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.11",
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "types-PyYAML>=6.0",
+    "types-networkx>=3.2",
+]
+
+[project.scripts]
+vital-graphs = "vital_graphs.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["vital_graphs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = "graphviz"
+ignore_missing_imports = true
+disable_error_code = ["import-untyped"]
