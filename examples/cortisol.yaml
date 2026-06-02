@@ -1,0 +1,33 @@
+schema_version: "1"
+
+system:
+  name: Cortisol signaling (simplified)
+  description: Stress hormone release and negative feedback on the HPA axis
+
+nodes:
+  - id: stress_signal
+    label: Stress signal
+    style:
+      fillcolor: "#fdebd0"
+  - id: crh
+    label: CRH
+  - id: acth
+    label: ACTH
+  - id: cortisol
+    label: Cortisol
+    style:
+      fillcolor: "#d6eaf8"
+
+edges:
+  - from: stress_signal
+    to: crh
+    relation: stimulates
+  - from: crh
+    to: acth
+    relation: stimulates
+  - from: acth
+    to: cortisol
+    relation: stimulates
+  - from: cortisol
+    to: crh
+    relation: inhibits
