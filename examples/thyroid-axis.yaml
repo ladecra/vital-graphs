@@ -1,0 +1,32 @@
+schema_version: "1"
+
+system:
+  name: Thyroid axis
+  description: Hypothalamic-pituitary-thyroid hormone axis with negative feedback
+
+nodes:
+  - id: trh
+    label: TRH
+  - id: tsh
+    label: TSH
+  - id: t4
+    label: T4
+  - id: t3
+    label: T3
+
+edges:
+  - from: trh
+    to: tsh
+    relation: stimulates
+  - from: tsh
+    to: t4
+    relation: stimulates
+  - from: t4
+    to: t3
+    relation: regulates
+  - from: t3
+    to: trh
+    relation: inhibits
+  - from: t3
+    to: tsh
+    relation: inhibits

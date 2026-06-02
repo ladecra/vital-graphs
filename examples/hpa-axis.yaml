@@ -1,0 +1,24 @@
+schema_version: "1"
+
+system:
+  name: HPA Axis
+  description: Hypothalamic-pituitary-adrenal stress response with cortisol feedback
+
+nodes:
+  - id: crh
+    label: CRH
+  - id: acth
+    label: ACTH
+  - id: cortisol
+    label: Cortisol
+
+edges:
+  - from: crh
+    to: acth
+    relation: stimulates
+  - from: acth
+    to: cortisol
+    relation: stimulates
+  - from: cortisol
+    to: crh
+    relation: inhibits
